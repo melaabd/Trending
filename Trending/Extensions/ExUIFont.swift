@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// font cases in the app
 enum FontWeight: String {
     case regular = "Regular"
     case bold = "Bold"

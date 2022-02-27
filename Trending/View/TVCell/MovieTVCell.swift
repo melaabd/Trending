@@ -7,47 +7,7 @@
 
 import UIKit
 
-class MovieTVCell: UITableViewCell {
-
-    var cellViewModel: MovieDetailsVM? {
-        didSet {
-            updateFields()
-        }
-    }
-    
-    lazy var imgView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        return imgView
-    }()
-    
-    lazy private var titleLbl:UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.numberOfLines = 0
-        lbl.textColor = .txt
-        lbl.textAlignment = .center
-        lbl.font = UIFont.sfPro(fontWeight: .bold, size: 18)
-        return lbl
-    }()
-    
-    lazy private var releaseDateLbl:UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = .txt
-        lbl.textAlignment = .center
-        lbl.font = UIFont.sfPro(size: 16)
-        return lbl
-    }()
-    
-    lazy private var rateLbl:UILabel = {
-        let lbl = UILabel()
-        lbl.translatesAutoresizingMaskIntoConstraints = false
-        lbl.textColor = .prime
-        lbl.textAlignment = .center
-        lbl.font = UIFont.sfPro(fontWeight: .bold, size: 14)
-        return lbl
-    }()
+class MovieTVCell: BaseMovieTVCell {
 
     lazy private var containerView: UIView = {
         let view = UIView()
@@ -61,16 +21,6 @@ class MovieTVCell: UITableViewCell {
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen.main.scale
         return view
-    }()
-    
-    lazy private var infoStack: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .vertical
-        stack.spacing = 5
-        stack.distribution = .fill
-        stack.alignment = .center
-        return stack
     }()
     
     required init?(coder aDecoder: NSCoder) {
@@ -119,17 +69,9 @@ class MovieTVCell: UITableViewCell {
         infoStack.addArrangedSubview(releaseDateLbl)
         infoStack.addArrangedSubview(rateLbl)
     }
-}
-
-// MARK: - Interactions & Functions
-private extension MovieTVCell {
-    func updateFields() {
-        GCD.onMain { [weak self] in
-            guard let self = self, let vm = self.cellViewModel else { return }
-            self.titleLbl.text = vm.title
-            self.releaseDateLbl.text = vm.releaseDate
-            self.rateLbl.text = "🌟 \(vm.rate)"
-        }
-    }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imgView.image = Asset.background.image
+    }
 }

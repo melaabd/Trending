@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// design custom colors
 extension UIColor {
     
     static let backG = UIColor(hexString: "#262627")

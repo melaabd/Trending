@@ -18,10 +18,7 @@ struct Movie: Codable, Equatable {
     let overview: String
     let posterImageURLPath: String
     let voteAverage: Float
-    var posterUrl:URL? {
-        let fullPath = Keys.mediaBaseURL + posterImageURLPath
-        return URL(string: fullPath)
-    }
+    
     enum CodingKeys: String, CodingKey {
         case id = "id"
         case title = "title"

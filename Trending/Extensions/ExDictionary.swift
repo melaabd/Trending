@@ -8,6 +8,8 @@
 import Foundation
 
 extension Dictionary {
+    /// encode api parameters
+    /// - Returns: `Data`
     func percentEncoded() -> Data? {
         return map { key, value in
             let escapedKey = "\(key)".addingPercentEncoding(withAllowedCharacters: .urlQueryValueAllowed) ?? ""
@@ -20,6 +22,7 @@ extension Dictionary {
 }
 
 extension CharacterSet {
+    /// parse special chars in api parameters
     static let urlQueryValueAllowed: CharacterSet = {
         let generalDelimitersToEncode = ":#[]@" // does not include "?" or "/" due to RFC 3986 - Section 3.4
         let subDelimitersToEncode = "!$&'()*+,;="

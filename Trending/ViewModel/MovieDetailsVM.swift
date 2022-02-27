@@ -15,12 +15,17 @@ struct MovieDetailsVM {
         return movie.title
     }
     
-    var releaseDate:String {
-        return movie.releaseDate
+    var releaseYear:String {
+        return movie.releaseDate.getDateInYearFormat()
     }
     
     var rate:String {
         return "\(movie.voteAverage)"
+    }
+    
+    var posterUrl:URL? {
+        let fullPath = Keys.mediaBaseURL + movie.posterImageURLPath
+        return URL(string: fullPath)
     }
     
 }

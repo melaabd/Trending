@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initializeRootVC()
         return true
     }
-
+    
+    /// set root view controller
     private func initializeRootVC() {
         let navbar = UINavigationController()
         let trendingMoviesVC = TrendingMoviesVC()

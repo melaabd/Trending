@@ -8,6 +8,7 @@
 import UIKit
 
 
+/// commen use Assets in app
 enum Asset: String {
     case background
     case btnModel
@@ -19,7 +20,12 @@ enum Asset: String {
 
 /// Holds constants keys for app
 enum Keys {
+    /// base url for APIs
     static let baseURL = "https://api.themoviedb.org/3/"
+    
+    /// images base url
     static let mediaBaseURL = "https://image.tmdb.org/t/p/w500"
+    
+    /// authnitication key for api
     static let apiKey = "c9856d0cb57c3f14bf75bdc6c063b8f3"
 }

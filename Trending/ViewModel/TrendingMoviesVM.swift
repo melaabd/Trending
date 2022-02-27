@@ -7,28 +7,25 @@
 
 import Foundation
 
-/// Binding Delegate
-protocol BindingDelegate: AnyObject {
-    func reloadData()
-    func notifyFailure(msg: String)
-}
-
 class TrendingMoviesVM {
     
-    weak var delegate: BindingDelegate?
-    var loadingCompletion: StatusCompletion?
+    weak var alertDelegate: AlertDelegate?
+    
+    var loading: StatusCompletion?
+    var reload: Completion?
+    
     var moviesDetailsVMs: [MovieDetailsVM] = []
     
     func getMoviesListL() {
-        loadingCompletion?(true)
+        loading?(true)
         Services.shared.getMoviesList { [weak self] movies, err in
             guard let self = self else { return }
-            self.loadingCompletion?(false)
+            self.loading?(false)
             if let errMsg = err {
-                self.delegate?.notifyFailure(msg: errMsg)
+                self.alertDelegate?.alertWith(msg: errMsg)
             } else if let movies = movies {
                 self.moviesDetailsVMs = movies.map { MovieDetailsVM(movie: $0) }
-                self.delegate?.reloadData()
+                self.reload?()
             }
         }
     }

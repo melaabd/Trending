@@ -7,12 +7,15 @@
 
 import UIKit
 
+/// App back ground theme
 protocol ViewTheme: UIViewController {
     func setUpBG(title: String)
 }
 
 extension ViewTheme {
-    func setUpBG(title: String) {
+    /// set attrebutes for view title and default background
+    /// - Parameter title: `String`
+    func setUpBG(title: String = "") {
         view.backgroundColor = .backG
         self.title = title
         navigationController?.navigationBar.titleTextAttributes = [
